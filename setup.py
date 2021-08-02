@@ -153,7 +153,7 @@ def get_setup_args():
     return dict(
         name=PACKAGE_NAME,
         version=VERSION,
-        description="DB-API 2.0 interface for SQLCIPHER 3.x",
+        description="DB-API 2.0 interface for SQLCIPHER 4.x",
         long_description=LONG_DESCRIPTION,
         author="David Riggleman",
         author_email="davidriggleman@gmail.com",
