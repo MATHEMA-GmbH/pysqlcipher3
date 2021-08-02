@@ -29,6 +29,18 @@ You have to pass the ``PRAGMA key`` before doing any operations::
   conn.commit()
   c.close()
 
+Due to the fact, that the encryption has compatibility with SQLCipher4, you have to add ``PRAGMA cipher_compatibility`` after ``PRAGMA key`` for using SQLCipher3 encryption::
+
+   from pysqlcipher3 import dbapi2 as sqlite
+   conn = sqlite.connect('test.db')
+   c = conn.cursor()
+   c.execute("PRAGMA key='password'")
+   c.execute("PRAGMA cipher_compatibility = 3")
+   c.execute('''create table stocks (date text, trans text, symbol text, qty real, price real)''')
+   c.execute("""insert into stocks values ('2006-01-05','BUY','RHAT',100,35.14)""")
+   conn.commit()
+   c.close()
+
 You can quickly verify that your database file in indeed encrypted::
 
   hexdump -C test.db                                                                                                        
